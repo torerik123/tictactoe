@@ -32,9 +32,10 @@ def play(row, col):
     return redirect(url_for("index"))
 
 
-# TODO: Reset game
-
-@app.route("/reset")
+@app.route("/reset", methods=["POST"])
 def reset():
 
-    return redirect(url_for("index")
+    if session["board"]:
+        session.pop("board")
+    
+        return redirect(url_for("index"))

@@ -35,6 +35,8 @@
             {% endfor %}
         </table>
 
-        <button onclick="/reset">Reset game</button>
+        <form action="/reset" method="post">
+            <button type="submit">Reset game</button>
+        </form>
     </body>
 </html>
