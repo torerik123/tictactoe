@@ -43,11 +43,30 @@ def reset():
 
 @app.context_processor
 def winner():
-
+        
+    # Columns
+    left = [ session["board"][0][0], session["board"][1][0], session["board"][2][0] ]
+    middle = [ session["board"][0][1], session["board"][1][1], session["board"][2][1] ]
+    right = [ session["board"][0][2], session["board"][1][2], session["board"][2][2] ]
+    
+    columns = left, middle, right
+    
+    for i in columns:
+        if i == ["X", "X", "X"]:
+            return dict(winner="X is the winner")
+        
+        if i == ["O", "O", "O"]:
+            return dict(winner="O is the winner")
+    
+    # Rows
     for row in session["board"]:
-        if row == ["X", "X", "X" ]:
+        
+        if row == ["X", "X", "X"]:
             return dict(winner='X is the winner')
-        if row == ["O", "O", "O" ]:
-            return dict(winner='O is the winner')
 
-    return dict(winner=0)
+        if row == ["O", "O", "O"]:
+            return dict(winner='O is the winner')
+                
+    # TODO: Horizontal wins and tie 
+
+    return dict(winner=str(columns))
