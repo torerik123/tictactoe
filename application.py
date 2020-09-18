@@ -39,3 +39,24 @@ def reset():
         session.pop("board")
     
         return redirect(url_for("index"))
+
+
+@app.context_processor
+def winner():
+
+    first_row = session["board"][0]
+    second_row = session["board"][1]
+    third_row = session["board"][2]
+
+    # TODO: Make this a function?
+
+    if first_row == ["X", "X", "X" ]:
+        return dict(winner='X is the winner')
+    
+    elif second_row == ["X", "X", "X" ]:
+        return dict(winner='X is the winner')
+    
+    elif third_row == ["X", "X", "X" ]:
+        return dict(winner='X is the winner')
+    else:
+        return dict(winner=0)
