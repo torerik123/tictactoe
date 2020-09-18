@@ -44,19 +44,10 @@ def reset():
 @app.context_processor
 def winner():
 
-    first_row = session["board"][0]
-    second_row = session["board"][1]
-    third_row = session["board"][2]
+    for row in session["board"]:
+        if row == ["X", "X", "X" ]:
+            return dict(winner='X is the winner')
+        if row == ["O", "O", "O" ]:
+            return dict(winner='O is the winner')
 
-    # TODO: Make this a function?
-
-    if first_row == ["X", "X", "X" ]:
-        return dict(winner='X is the winner')
-    
-    elif second_row == ["X", "X", "X" ]:
-        return dict(winner='X is the winner')
-    
-    elif third_row == ["X", "X", "X" ]:
-        return dict(winner='X is the winner')
-    else:
-        return dict(winner=0)
+    return dict(winner=0)
