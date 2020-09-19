@@ -9,6 +9,14 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+def tie(board):
+    # Returns false if board contains None values and True if all squares on board is full
+    
+    for row in board:
+        if None in row:
+            return False
+    return True
+
 @app.route("/")
 def index():
 
@@ -49,28 +57,36 @@ def winner():
     middle = [ session["board"][0][1], session["board"][1][1], session["board"][2][1] ]
     right = [ session["board"][0][2], session["board"][1][2], session["board"][2][2] ]
     
+    # Rows
+    top_row = [ session["board"][0][0], session["board"][0][1], session["board"][0][2] ]
+    middle_row = [ session["board"][1][0], session["board"][1][1], session["board"][1][2] ]
+    bottom_row = [ session["board"][2][0], session["board"][2][1], session["board"][2][2] ]
+    
     # Horizontal  = \ and /
     horizontal1 = [ session["board"][0][0], session["board"][1][1], session["board"][2][2] ]
     horizontal2 = [ session["board"][0][2], session["board"][1][1], session["board"][2][0] ]
-
-    check = left, middle, right, horizontal1, horizontal2
     
+    check = left, middle, right, horizontal1, horizontal2, top_row, middle_row, bottom_row
+
     for i in check:
         if i == ["X", "X", "X"]:
             return dict(winner="X is the winner")
         
         if i == ["O", "O", "O"]:
             return dict(winner="O is the winner")
-    
-    # Rows
-    for row in session["board"]:
-        
-        if row == ["X", "X", "X"]:
-            return dict(winner='X is the winner')
-
-        if row == ["O", "O", "O"]:
-            return dict(winner='O is the winner')
                 
-    # TODO: Tie 
+    full_board = tie(session["board"])
+    
+    # Returns empty string if board is not full
+    if not full_board:
+        return dict(winner="")
 
-    return dict(winner=str(check))
+    # If all squares have values and nobody has won, it is a tie
+    return dict(winner="Tie!")
+    
+
+    # Undo move
+
+    # Let computer make a move
+
+    # Play against AI
