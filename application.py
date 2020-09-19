@@ -49,9 +49,13 @@ def winner():
     middle = [ session["board"][0][1], session["board"][1][1], session["board"][2][1] ]
     right = [ session["board"][0][2], session["board"][1][2], session["board"][2][2] ]
     
-    columns = left, middle, right
+    # Horizontal  = \ and /
+    horizontal1 = [ session["board"][0][0], session["board"][1][1], session["board"][2][2] ]
+    horizontal2 = [ session["board"][0][2], session["board"][1][1], session["board"][2][0] ]
+
+    check = left, middle, right, horizontal1, horizontal2
     
-    for i in columns:
+    for i in check:
         if i == ["X", "X", "X"]:
             return dict(winner="X is the winner")
         
@@ -67,6 +71,6 @@ def winner():
         if row == ["O", "O", "O"]:
             return dict(winner='O is the winner')
                 
-    # TODO: Horizontal wins and tie 
+    # TODO: Tie 
 
-    return dict(winner=str(columns))
+    return dict(winner=str(check))
