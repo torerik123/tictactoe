@@ -34,6 +34,11 @@
                 </tr>
             {% endfor %}
         </table>
+        
+        {% if winner != 0 %}
+            {{winner}}
+        {% endif %}
+
 
         <form action="/reset" method="post">
             <button type="submit">Reset game</button>
