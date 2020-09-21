@@ -28,14 +28,17 @@ def index():
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
-
-    if session["turn"] == "X":
-        session["board"][row][col] = "X"
-        session["turn"] = "O"    
     
-    else:
-        session["board"][row][col] = "O"
-        session["turn"] = "X"
+    try:
+        if session["turn"] == "X":
+            session["board"][row][col] = "X"
+            session["turn"] = "O"    
+        
+        else:
+            session["board"][row][col] = "O"
+            session["turn"] = "X"
+    except KeyError:
+        return "Keyerror"
 
     return redirect(url_for("index"))
 
