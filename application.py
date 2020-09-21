@@ -46,7 +46,7 @@ def reset():
     if session["board"]:
         session.pop("board")
     
-        return redirect(url_for("index"))
+    return redirect(url_for("index"))
 
 
 @app.context_processor
