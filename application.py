@@ -22,7 +22,6 @@ def tie(board):
 @app.route("/")
 def index():
 
-    try:
         if "board" not in session:
             session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
             session["turn"] = "X"
@@ -30,8 +29,6 @@ def index():
         if "moves" not in session:
             session["moves"] = []
             return "Moves are empty"
-    except KeyError:
-        return "KeyError board"
 
     return render_template("game.html", game=session["board"], turn=session["turn"], moves=session["moves"])
 
@@ -65,9 +62,12 @@ def play(row, col):
 @app.route("/reset", methods=["POST"])
 def reset():
 
-    if session["board"]:
-        session.pop("board")
-    
+    try:
+        if session["board"]:
+            session.pop("board")
+            return redirect(url_for("index"))
+    except KeyError:
+        "Key error reset"
     return redirect(url_for("index"))
 
 
