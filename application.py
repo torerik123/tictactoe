@@ -105,13 +105,24 @@ def winner():
     
 
 # Undo move
-@app.route("/undo/<int:row>/<int:col>")
-def undo(row, col):
+@app.route("/undo", methods = ["POST"])
+def undo():
+    
     if "moves" in session:
-        session["moves"][row][col] = None    
+        
+        # Coordinates
+        move = session["moves"][-1]
+
+        x = move[0]
+        y = move[1]
+
+       # Remove from board at specified position
+        session["board"][x][y] = None 
+        
+        # Remove last move from history
+        session["moves"].pop(-1)
     return redirect(url_for("index"))    
 
-#TODO: Make history into function
 
 if __name__ == "main":
     app.debug = True
