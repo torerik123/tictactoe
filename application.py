@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for
 from flask_session import Session
 from tempfile import mkdtemp
+import os
 
 app = Flask(__name__)
 
@@ -29,7 +30,7 @@ def index():
 
     if "moves" not in session:
         session["moves"] = []
-        return "Moves are empty"
+
     return render_template("game.html", game=session["board"], turn=session["turn"], moves=session["moves"])
 
 
