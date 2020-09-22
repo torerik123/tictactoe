@@ -22,14 +22,14 @@ def tie(board):
 @app.route("/")
 def index():
 
-        if "board" not in session:
-            session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
-            session["turn"] = "X"
 
-        if "moves" not in session:
-            session["moves"] = []
-            return "Moves are empty"
+    if "board" not in session:
+        session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
+        session["turn"] = "X"
 
+    if "moves" not in session:
+        session["moves"] = []
+        return "Moves are empty"
     return render_template("game.html", game=session["board"], turn=session["turn"], moves=session["moves"])
 
 
