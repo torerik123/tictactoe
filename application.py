@@ -130,5 +130,5 @@ def undo():
 
 
 if __name__ == "main":
-    app.debug = True
-    app.run()
+    p = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, port=p, host='0.0.0.0')
