@@ -112,4 +112,5 @@ def undo(row, col):
 #TODO: Make history into function
 
 if __name__ == "main":
+    app.debug = True
     app.run()
