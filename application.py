@@ -22,13 +22,16 @@ def tie(board):
 @app.route("/")
 def index():
 
-    if "board" not in session:
-        session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
-        session["turn"] = "X"
+    try:
+        if "board" not in session:
+            session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
+            session["turn"] = "X"
 
-    if "moves" not in session:
-        session["moves"] = []
-        return "Moves are empty"
+        if "moves" not in session:
+            session["moves"] = []
+            return "Moves are empty"
+    except KeyError:
+        return "KeyError board"
 
     return render_template("game.html", game=session["board"], turn=session["turn"], moves=session["moves"])
 
@@ -122,6 +125,8 @@ def undo():
         # Remove last move from history
         session["moves"].pop(-1)
     return redirect(url_for("index"))    
+
+#TODO - Let computer make move
 
 
 if __name__ == "main":
