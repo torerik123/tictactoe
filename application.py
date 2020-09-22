@@ -129,6 +129,6 @@ def undo():
 #TODO - Let computer make move
 
 
-if __name__ == "main":
+if __name__ == 'main':
     p = int(os.environ.get("PORT", 5000))
     app.run(debug=True, port=p, host='0.0.0.0')
