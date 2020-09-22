@@ -9,6 +9,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+
 def tie(board):
     # Returns false if board contains None values and True if all squares on board is full
     
@@ -17,6 +18,7 @@ def tie(board):
             return False
     return True
 
+
 @app.route("/")
 def index():
 
@@ -24,19 +26,33 @@ def index():
         session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
         session["turn"] = "X"
 
-    return render_template("game.html", game=session["board"], turn=session["turn"])
+    if "moves" not in session:
+        session["moves"] = [[None, None, None], [None, None, None], [None, None, None]]
+        return "Moves are empty"
+
+    return render_template("game.html", game=session["board"], turn=session["turn"], moves=session["moves"])
+
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
     
     try:
         if session["turn"] == "X":
+            #Play X
             session["board"][row][col] = "X"
-            session["turn"] = "O"    
-        
+            session["turn"] = "O"
+
+            #Save to history
+            session["moves"][row][col] = [row,col]
+            
         else:
+            #Play O
             session["board"][row][col] = "O"
             session["turn"] = "X"
+
+            #Save to history
+            session["moves"][row][col] = [row,col]
+
     except KeyError:
         return "Keyerror"
 
@@ -88,12 +104,12 @@ def winner():
     return dict(winner="Tie!")
     
 
-    # Undo move
+# Undo move
+@app.route("/undo/<int:row>/<int:col>")
+def undo(row, col):
+    pass    
 
-    # Let computer make a move
+#TODO: Make history into function
 
-    # Play against AI
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == "main":
+    app.run()
