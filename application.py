@@ -27,7 +27,7 @@ def index():
         session["turn"] = "X"
 
     if "moves" not in session:
-        session["moves"] = [[None, None, None], [None, None, None], [None, None, None]]
+        session["moves"] = []
         return "Moves are empty"
 
     return render_template("game.html", game=session["board"], turn=session["turn"], moves=session["moves"])
@@ -43,7 +43,7 @@ def play(row, col):
             session["turn"] = "O"
 
             #Save to history
-            session["moves"][row][col] = [row,col]
+            session["moves"].append([row,col])
             
         else:
             #Play O
@@ -51,7 +51,7 @@ def play(row, col):
             session["turn"] = "X"
 
             #Save to history
-            session["moves"][row][col] = [row,col]
+            session["moves"].append([row,col])
 
     except KeyError:
         return "Keyerror"
@@ -107,7 +107,9 @@ def winner():
 # Undo move
 @app.route("/undo/<int:row>/<int:col>")
 def undo(row, col):
-    pass    
+    if "moves" in session:
+        session["moves"][row][col] = None    
+    return redirect(url_for("index"))    
 
 #TODO: Make history into function
 
