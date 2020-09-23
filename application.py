@@ -36,8 +36,17 @@ def index():
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
-    
-    
+
+    if session["turn"] == "X":
+        #Play X
+        session["board"][row][col] = "X"
+        session["turn"] = "O"
+    else:
+            #Play O
+            session["board"][row][col] = "O"
+            session["turn"] = "X"
+
+    return render_template("game.html", game=session["board"], turn=session["turn"])
     
     """
     try:
@@ -60,7 +69,7 @@ def play(row, col):
     except KeyError:
         return "Keyerror"
     """
-    return "TODO"
+    #return redirect(url_for("index"))
 
 
 @app.route("/reset", methods=["POST"])
