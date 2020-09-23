@@ -27,18 +27,25 @@
                             {% if game[i][j] %}
                                 {{ game[i][j] }}
                             {% else %}
-                                <a href="{{ url_for('play', row=i, col=j) }}">Play {{ turn }} here.</a>
-                            {% endif %}
+                                <a href="{{ url_for('play', row=i, col=j) }}">Play {{ turn }} here.</a>        
+                                
+                                {% endif %}
                         </td>
                     {% endfor %}
                 </tr>
             {% endfor %}
         </table>
-        
         {% if winner != 0 %}
             {{winner}}
         {% endif %}
-
+        
+        <form action="/minmax" method="post">
+            <button type="submit">Let computer make move</button>
+        </form>
+        
+        <form action="/undo" method="post">
+            <button type="submit">Undo move</button>
+        </form>
 
         <form action="/reset" method="post">
             <button type="submit">Reset game</button>
