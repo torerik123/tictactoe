@@ -19,13 +19,6 @@ def tie(board):
             return False
     return True
 
-def game_over():
-    if winner == "X":
-        return 1
-    if winner == "0":
-        return -1
-
-
 @app.route("/")
 def index():
 
@@ -138,7 +131,7 @@ def minimax(game, turn):
     
     score = 0
 
-    #Returns X, O or ""
+    #Returns "", X, O or "Tie!"
     game_over = winner()
     
     #If game is over: Return score for game
@@ -154,9 +147,21 @@ def minimax(game, turn):
         score = 0
         return str(score)
     
+    #All possible moves
+    all_moves =[ [0,0] , [0,1] , [0,2] , [1,0] , [1,1] , [1,2] , [2,0] , [2,1], [2,2] ]
+    
+    # Saves available moves for the game
+    empty_squares = []
 
+    for coordinates in all_moves:
+        
+        x, y = coordinates
+        
+        # Saves coordinates of empty squares
+        if session["board"][x][y] == None:
+            empty_squares.append(coordinates)
+    return str(empty_squares)
 
-    #moves = available moves for the game
 
     #if turn is x:
         #value = -infinity
