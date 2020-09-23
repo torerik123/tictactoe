@@ -35,8 +35,14 @@
                 </tr>
             {% endfor %}
         </table>
-        {% if winner != 0 %}
-            {{winner}}
+        {% if winner != "" %}
+            
+            {% if winner == "Tie!" %}
+                {{winner}}    
+            {% else %}
+                {{winner}} is the winner!
+            {% endif %}
+
         {% endif %}
         
         <form action="/minimax/game/turn" method="post">

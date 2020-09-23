@@ -19,6 +19,12 @@ def tie(board):
             return False
     return True
 
+def game_over():
+    if winner == "X":
+        return 1
+    if winner == "0":
+        return -1
+
 
 @app.route("/")
 def index():
@@ -36,6 +42,7 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
 
+    # TODO: Keyerror turn??
     if session["turn"] == "X":
         #Play X
         session["board"][row][col] = "X"
@@ -56,6 +63,8 @@ def play(row, col):
 
 @app.route("/reset", methods=["POST"])
 def reset():
+
+# TODO: KeyError 'board'
 
     if session["board"]:
         session.pop("board")
@@ -84,10 +93,10 @@ def winner():
 
     for i in check:
         if i == ["X", "X", "X"]:
-            return dict(winner="X is the winner")
+            return dict(winner="X")
         
         if i == ["O", "O", "O"]:
-            return dict(winner="O is the winner")
+            return dict(winner="O")
                 
     full_board = tie(session["board"])
     
@@ -104,27 +113,49 @@ def winner():
 def undo():
     
     if "moves" in session:
-        
-        # Coordinates
-        move = session["moves"][-1]
+        try:    
+            # Coordinates
+            move = session["moves"][-1]
 
-        x = move[0]
-        y = move[1]
+            x = move[0]
+            y = move[1]
 
-       # Remove from board at specified position
-        session["board"][x][y] = None 
+        # Remove from board at specified position
+            session["board"][x][y] = None 
+            
+            # Remove last move from history
+            session["moves"].pop(-1)
         
-        # Remove last move from history
-        session["moves"].pop(-1)
+        except IndexError:
+            return redirect(url_for("index"))        
+
     return redirect(url_for("index"))    
 
 
 @app.route("/minimax/<string:game>/<string:turn>", methods = ["POST"])
 def minimax(game, turn): 
 # Let computer make move
+    
+    score = 0
 
-    #if game is over:
-        #return score for game
+    #Returns X, O or ""
+    game_over = winner()
+    
+    #If game is over: Return score for game
+    if game_over["winner"] == "X":
+        score = 1
+        return str(score)
+
+    if game_over["winner"] == "O":
+        score = -1
+        return str(score)
+    
+    if game_over["winner"] == "Tie!":
+        score = 0
+        return str(score)
+    
+
+
     #moves = available moves for the game
 
     #if turn is x:
@@ -142,7 +173,7 @@ def minimax(game, turn):
 
     # Keep track of best possible move so far?
 
-    return "TODO"
+    return str(score)
 
 # Returns KeyError if this is active?
 
