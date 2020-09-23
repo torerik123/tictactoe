@@ -37,6 +37,9 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
     
+    
+    
+    """
     try:
         if session["turn"] == "X":
             #Play X
@@ -56,8 +59,8 @@ def play(row, col):
 
     except KeyError:
         return "Keyerror"
-
-    return redirect(url_for("index"))
+    """
+    return "TODO"
 
 
 @app.route("/reset", methods=["POST"])
@@ -150,9 +153,6 @@ def minimax(game, turn):
 
 
     # Keep track of best possible move so far?
-
-
-
 
     return "TODO"
 
