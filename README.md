@@ -1,4 +1,4 @@
-# tictactoe
+# Tic Tac Toe
 Tic tac toe built with Flask
 
 The game is won when either player "X" or "O" has three squares in a row in the vertical, horizontal or diagonal direction.
