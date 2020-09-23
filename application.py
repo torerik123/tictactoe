@@ -23,7 +23,6 @@ def tie(board):
 @app.route("/")
 def index():
 
-
     if "board" not in session:
         session["board"] = [[None, None, None], [None, None, None], [None, None, None]]
         session["turn"] = "X"
@@ -41,46 +40,26 @@ def play(row, col):
         #Play X
         session["board"][row][col] = "X"
         session["turn"] = "O"
+
+        #Save to history
+        session["moves"].append([row,col])
     else:
-            #Play O
-            session["board"][row][col] = "O"
-            session["turn"] = "X"
+        #Play O
+        session["board"][row][col] = "O"
+        session["turn"] = "X"
 
-    return render_template("game.html", game=session["board"], turn=session["turn"])
-    
-    """
-    try:
-        if session["turn"] == "X":
-            #Play X
-            session["board"][row][col] = "X"
-            session["turn"] = "O"
+        #Save to history
+        session["moves"].append([row,col])
 
-            #Save to history
-            session["moves"].append([row,col])
-            
-        else:
-            #Play O
-            session["board"][row][col] = "O"
-            session["turn"] = "X"
-
-            #Save to history
-            session["moves"].append([row,col])
-
-    except KeyError:
-        return "Keyerror"
-    """
-    #return redirect(url_for("index"))
+    return redirect(url_for("index"))
 
 
 @app.route("/reset", methods=["POST"])
 def reset():
 
-    try:
-        if session["board"]:
-            session.pop("board")
-            return redirect(url_for("index"))
-    except KeyError:
-        "Key error reset"
+    if session["board"]:
+        session.pop("board")
+        return redirect(url_for("index"))
     return redirect(url_for("index"))
 
 
@@ -140,8 +119,8 @@ def undo():
     return redirect(url_for("index"))    
 
 
-@app.route("/minmax", methods=["POST"])
-def minimax(game, turn):
+@app.route("/minimax/<string:game>/<string:turn>", methods = ["POST"])
+def minimax(game, turn): 
 # Let computer make move
 
     #if game is over:

@@ -39,10 +39,10 @@
             {{winner}}
         {% endif %}
         
-        <form action="/minmax" method="post">
+        <form action="/minimax/game/turn" method="post">
             <button type="submit">Let computer make move</button>
         </form>
-        
+
         <form action="/undo" method="post">
             <button type="submit">Undo move</button>
         </form>
