@@ -6,5 +6,5 @@ If all squares are full and no winner has been made, the game is tied. The user 
 
 After playing a move, the user has the option to undo the last move played and choose to play a different move.
 
-- Work in progress:
+# Work in progress:
  * Let the computer make a move button
