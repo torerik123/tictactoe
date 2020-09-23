@@ -127,9 +127,37 @@ def undo():
         session["moves"].pop(-1)
     return redirect(url_for("index"))    
 
-#TODO - Let computer make move
+
+@app.route("/minmax", methods=["POST"])
+def minimax(game, turn):
+# Let computer make move
+
+    #if game is over:
+        #return score for game
+    #moves = available moves for the game
+
+    #if turn is x:
+        #value = -infinity
+        # for move in moves:
+            #value = max(value, minimax(game with move made, 0))
+    
+    #else:
+        #value = infinity
+        #for move in moves:
+            #value = min(value, minimax(game with move made, X))
+    
+    #return value
 
 
-if __name__ == 'main':
-    p = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, port=p, host='0.0.0.0')
+    # Keep track of best possible move so far?
+
+
+
+
+    return "TODO"
+
+# Returns KeyError if this is active?
+
+#if __name__ == 'main':
+#    p = int(os.environ.get("PORT", 5000))
+#    app.run(debug=True, port=p, host='0.0.0.0')
