@@ -2,67 +2,7 @@
 <html>
     <head>
         <title>Tic Tac Toe</title>
-        <style>
-            table {
-                border-collapse: collapse;
-                border-style:hidden;
-            }
-            td {
-                border: 1px solid black;
-                border-width:thick;
-                width: 150px;
-                height: 150px;
-                font-size: 30px;
-                text-align: center;
-            }
-            td > a {
-                font-size: 18px;
-            }
-
-            .container {
-                display:flex;
-                justify-content:center;
-            }
-
-            .buttons {
-                padding:20px;
-                display:flex;
-                justify-content:center;
-            }
-
-            body {
-                background-color:#F0F8FF;
-            }
-            
-            .myButton {
-                box-shadow:inset 0px 1px 0px 0px #e184f3;
-                background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
-                background-color:#c123de;
-                border-radius:5px;
-                border:2px solid #a511c0;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family:Arial;
-                font-size:14px;
-                font-weight:bold;
-                padding:7px 17px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #9b14b3;
-            }
-            .myButton:hover {
-                background:linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
-                background-color:#a20dbd;
-            }
-            .myButton:active {
-                position:relative;
-                top:1px;
-            }
-
-            .winner {
-                font-family:sans-serif;
-            }
-        </style>
+        <link href="/static/styles.css" rel="stylesheet">
     </head>
 
     <body>
