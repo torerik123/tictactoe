@@ -58,10 +58,16 @@
                 position:relative;
                 top:1px;
             }
+
+            .winner {
+                font-family:sans-serif;
+            }
         </style>
     </head>
 
     <body>
+
+        <!--Game Board-->
         <div class="container">
             <table>
                 {% for i in range(3) %}
@@ -81,15 +87,22 @@
             </table>
         </div>
         
-        {% if winner != "" %}
-            
-            {% if winner == "Tie!" %}
-                {{winner}}    
-            {% else %}
-                {{winner}} is the winner!
-            {% endif %}
+        <!--Display winner-->
+        <div class="container">
+            <h2 class="winner">
+            {% if winner != "" %}
+                
+                {% if winner == "Tie!" %}
+                    {{winner}}    
+                {% else %}
+                    {{winner}} is the winner!
+                {% endif %}
 
-        {% endif %}
+            {% endif %}
+            </h2>
+        </div>
+        
+        <!--Buttons-->
         <div class="buttons">
             <form action="/undo" method="post">
                 <button class="myButton" type="submit">Undo move</button>
