@@ -14,6 +14,19 @@ td > a {
     font-size: 18px;
 }
 
+.board-bg {
+    background-color:#66CDAA;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+}
+
+td:hover{
+    background-color:#DCDCDC;
+
+}
+
+
 .container {
     display:flex;
     justify-content:center;
@@ -57,3 +70,4 @@ body {
 .winner {
     font-family:sans-serif;
 }
+
