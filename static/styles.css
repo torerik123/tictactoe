@@ -26,10 +26,15 @@ td:hover{
 
 }
 
-
 .container {
     display:flex;
     justify-content:center;
+}
+
+.turn {
+    display:flex;
+    justify-content: center;
+    font-family:sans-serif;
 }
 
 .buttons {
@@ -69,5 +74,6 @@ body {
 
 .winner {
     font-family:sans-serif;
+    margin-bottom: 0px;
 }
 

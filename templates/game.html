@@ -6,6 +6,23 @@
     </head>
 
     <body>
+        <!--Display winner/turn-->
+        <div class="container">
+            <h1 class="winner">
+                {% if winner != "" %}
+                    
+                    {% if winner == "Tie!" %}
+                        {{winner}}    
+                    {% else %}
+                        {{winner}} is the winner!
+                    {% endif %}
+
+                {% else %}    
+                    Turn: {{ turn }}
+                {% endif %}
+            </h1>
+        </div>
+
         <!--Game Board-->
         <div class="container">
             <div class="board-bg">
@@ -28,22 +45,6 @@
             </div>
         </div>
 
-
-        <!--Display winner-->
-        <div class="container">
-            <h2 class="winner">
-            {% if winner != "" %}
-                
-                {% if winner == "Tie!" %}
-                    {{winner}}    
-                {% else %}
-                    {{winner}} is the winner!
-                {% endif %}
-
-            {% endif %}
-            </h2>
-        </div>
-        
         <!--Buttons-->
         <div class="buttons">
             <form action="/undo" method="post">
@@ -59,4 +60,13 @@
             </form>
         </div>
     </body>
+    <script>
+        winner = document.querySelector(".winner");
+        if (winner.innerHTML == "") {
+            winner.style.display = "none";
+        }
+        else {
+            winner.style.display = "block";
+        }
+    </script>
 </html>
