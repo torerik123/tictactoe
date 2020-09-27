@@ -30,14 +30,14 @@
                     {% for i in range(3) %}
                         <tr>
                             {% for j in range(3) %}
-                                <td>
-                                    {% if game[i][j] %}
-                                        {{ game[i][j] }}
-                                    {% else %}
-                                        <a href="{{ url_for('play', row=i, col=j) }}">Play {{ turn }} here.</a>        
-                                        
+                                    <td>
+                                        {% if game[i][j] %}
+                                            <div class="move">{{ game[i][j] }}</div>
+                                        {% else %}
+                                            <a class="block" href="{{ url_for('play', row=i, col=j) }}"></a>        
                                         {% endif %}
-                                </td>
+                                        
+                                    </td>           
                             {% endfor %}
                         </tr>
                     {% endfor %}
@@ -68,5 +68,6 @@
         else {
             winner.style.display = "block";
         }
+
     </script>
 </html>
