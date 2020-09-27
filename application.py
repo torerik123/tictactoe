@@ -35,21 +35,24 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
 
+    turn = session["turn"]
+
     # TODO: Keyerror turn??
-    if session["turn"] == "X":
+
+    if turn == "X":
         #Play X
         session["board"][row][col] = "X"
         session["turn"] = "O"
 
         #Save to history
-        session["moves"].append([row,col])
+        session["moves"].append([row,col, turn])
     else:
         #Play O
         session["board"][row][col] = "O"
         session["turn"] = "X"
 
         #Save to history
-        session["moves"].append([row,col])
+        session["moves"].append([row,col, turn])
 
     return redirect(url_for("index"))
 
@@ -112,10 +115,12 @@ def undo():
 
             x = move[0]
             y = move[1]
+            turn = move[2]
 
         # Remove from board at specified position
             session["board"][x][y] = None 
-            
+            session["turn"] = turn
+
             # Remove last move from history
             session["moves"].pop(-1)
         
