@@ -109,24 +109,25 @@ def winner():
 def undo():
     
     if "moves" in session:
-        try:    
-            # Coordinates
-            move = session["moves"][-1]
+        try:
+                # Coordinates
+                move = session["moves"][-1]
 
-            x = move[0]
-            y = move[1]
-            turn = move[2]
+                x = move[0]
+                y = move[1]
+                turn = move[2]
+            
+                # Remove from board at specified position
+                session["board"][x][y] = None 
+                session["turn"] = turn
 
-        # Remove from board at specified position
-            session["board"][x][y] = None 
-            session["turn"] = turn
-
-            # Remove last move from history
-            session["moves"].pop(-1)
+                # Remove last move from history
+                session["moves"].pop(-1)
+            
         
         except IndexError:
             return redirect(url_for("index"))        
-
+    
     return redirect(url_for("index"))    
 
 
