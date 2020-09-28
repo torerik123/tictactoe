@@ -19,6 +19,7 @@ def tie(board):
             return False
     return True
 
+
 @app.route("/")
 def index():
 
@@ -131,63 +132,10 @@ def undo():
     return redirect(url_for("index"))    
 
 
-@app.route("/minimax/<string:game>/<string:turn>", methods = ["POST"])
-def minimax(game, turn): 
-# Let computer make move
-    
-    score = 0
 
-    #Returns "", X, O or "Tie!"
-    game_over = winner()
-    
-    #If game is over: Return score for game
-    if game_over["winner"] == "X":
-        score = 1
-        return str(score)
-
-    if game_over["winner"] == "O":
-        score = -1
-        return str(score)
-    
-    if game_over["winner"] == "Tie!":
-        score = 0
-        return str(score)
-    
-    #All possible moves
-    all_moves =[ [0,0] , [0,1] , [0,2] , [1,0] , [1,1] , [1,2] , [2,0] , [2,1], [2,2] ]
-    
-    # Saves available moves for the game
-    empty_squares = []
-
-    for coordinates in all_moves:
-        
-        x, y = coordinates
-        
-        # Saves coordinates of empty squares
-        if session["board"][x][y] == None:
-            empty_squares.append(coordinates)
-    return str(empty_squares)
-
-
-    #if turn is x:
-        #value = -infinity
-        # for move in moves:
-            #value = max(value, minimax(game with move made, 0))
-    
-    #else:
-        #value = infinity
-        #for move in moves:
-            #value = min(value, minimax(game with move made, X))
-    
-    #return value
 
 
     # Keep track of best possible move so far?
 
-    return str(score)
 
-# Returns KeyError if this is active?
-
-#if __name__ == 'main':
-#    p = int(os.environ.get("PORT", 5000))
-#    app.run(debug=True, port=p, host='0.0.0.0')
+# TODO: Keyerror play function, KeyError board + turn
