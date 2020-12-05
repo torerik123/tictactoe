@@ -103,7 +103,7 @@ def winner():
 # Undo move
 @app.route("/undo", methods = ["POST"])
 def undo():
-    l = 0
+    
     if "moves" in session:
         try:
                 # Coordinates
