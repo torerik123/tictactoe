@@ -19,7 +19,6 @@ def tie(board):
             return False
     return True
 
-
 @app.route("/")
 def index():
 
@@ -37,8 +36,6 @@ def index():
 def play(row, col):
 
     turn = session["turn"]
-
-    # TODO: Keyerror turn??
 
     if turn == "X":
         #Play X
@@ -60,8 +57,6 @@ def play(row, col):
 
 @app.route("/reset", methods=["POST"])
 def reset():
-
-# TODO: KeyError 'board'
 
     if session["board"]:
         session.pop("board")
@@ -108,7 +103,7 @@ def winner():
 # Undo move
 @app.route("/undo", methods = ["POST"])
 def undo():
-    
+    l = 0
     if "moves" in session:
         try:
                 # Coordinates
@@ -130,12 +125,3 @@ def undo():
             return redirect(url_for("index"))        
     
     return redirect(url_for("index"))    
-
-
-
-
-
-    # Keep track of best possible move so far?
-
-
-# TODO: Keyerror play function, KeyError board + turn
