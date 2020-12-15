@@ -2,10 +2,11 @@
 <html>
     <head>
         <title>Tic Tac Toe</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="/static/styles.css" rel="stylesheet">
     </head>
 
-    <body>
+    <body id="body" class="container-fluid">
         <!--Display winner/turn-->
         <div class="container">
             <h1 class="winner">
@@ -24,9 +25,9 @@
         </div>
 
         <!--Game Board-->
-        <div class="container">
-            <div class="board-bg">
-                <table>
+        <div class="container-fluid">
+            <div class="board">
+                <table class="board-bg">
                     {% for i in range(3) %}
                         <tr>
                             {% for j in range(3) %}

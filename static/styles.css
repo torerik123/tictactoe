@@ -2,11 +2,12 @@ table {
     border-collapse: collapse;
     border-style:hidden;
 }
+
 td {
     border: 1px solid black;
     border-width:thick;
-    width: 150px;
-    height: 150px;
+    width: 10em;
+    height: 10em;
     font-size: 30px;
     text-align: center;
 }
@@ -15,6 +16,11 @@ td {
     font-size: 80px;
     font-family:cursive;
     font-weight:200;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
 }
 
 .board-bg {
@@ -57,6 +63,12 @@ body {
     background-color:#F0F8FF;
 }
 
+#body {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
 .myButton {
     box-shadow:inset 0px 1px 0px 0px #e184f3;
     background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
@@ -67,7 +79,7 @@ body {
     cursor:pointer;
     color:#ffffff;
     font-family:Arial;
-    font-size:14px;
+    font-size:3em;
     font-weight:bold;
     padding:7px 17px;
     text-decoration:none;
@@ -87,3 +99,41 @@ body {
     margin-bottom: 10px;
 }
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    td {
+        width: 8em;
+        height: 8em;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .myButton {
+        font-size: 2em;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .myButton {
+        font-size: 2em;
+    }
+    
+    td {
+        width: 5em;
+        height: 5em;
+    }
+ }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .myButton {
+        font-size: 1em;
+    }
+    
+    td {
+        width: 5em;
+        height: 5em;
+    }
+ }
